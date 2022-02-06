@@ -18,19 +18,9 @@ const checkAnswer = (id, answer, set) =>
       window.alert('Network error: No response. Try again.')
     })
 
-const giveUp = set =>
-  axios
-    .post(`/api/give-up`, {})
-    .then(r => r.data)
-    .then(set)
-    .catch(e => {
-      window.alert('Network error: No response. Try again.')
-    })
-
 const Api = {
   fetchSounds,
-  checkAnswer,
-  giveUp
+  checkAnswer
 }
 
 export default Api

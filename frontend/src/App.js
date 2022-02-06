@@ -4,7 +4,6 @@ import AudioPlayer from './Services/AudioPlayer'
 import Api from './Services/Api'
 import QuizContainer from './Components/QuizContainer'
 import QuizFooter from './Components/QuizFooter'
-import GiveUpButton from './Components/GiveUpButton'
 
 import './App.css'
 
@@ -61,19 +60,6 @@ const App = () => {
     })
   }
 
-  const handleGiveUp = () => {
-    Api.giveUp(spoilers => {
-      AudioPlayer.playAudio('game-over')
-      setSounds(
-        sounds.map(s => ({
-          ...s,
-          game: (spoilers.find(x => x.id === s.id) || {}).game
-        }))
-      )
-      setGaveUp(true)
-    })
-  }
-
   return (
     <article className='App'>
       <header className='Quiz-header'>Video Game SFX Quiz</header>
@@ -82,9 +68,6 @@ const App = () => {
         handleCheck={handleCheck}
         playAudio={AudioPlayer.playAudio}
       />
-      {sounds.length > 0 && (
-        <GiveUpButton onClick={handleGiveUp} isDisabled={gaveUp} />
-      )}
       <QuizFooter max={sounds.length} score={correctAnswers()} />
     </article>
   )

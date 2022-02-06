@@ -29,9 +29,6 @@ const QuizInput = ({ sound, handleCheck }) => {
     if (sound.correct) {
       return 'Quiz-input--correct'
     }
-    if (sound.game) {
-      return 'Quiz-input--spoiler'
-    }
   }
 
   return (
